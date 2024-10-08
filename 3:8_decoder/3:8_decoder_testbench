@@ -1,0 +1,32 @@
+module testbench;
+    reg [2:0] in;     
+    wire [7:0] out;   
+
+
+    decoder_3x8 dut (
+        .in(in),
+        .out(out)
+    );
+
+    initial begin
+        
+        in = 3'b000;  #5;
+        in = 3'b001;  #5;
+        in = 3'b010;  #5;
+        in = 3'b011;  #5;
+        in = 3'b100;  #5;
+        in = 3'b101;  #5;
+        in = 3'b110;  #5;
+        in = 3'b111;  #5;
+        $finish;  
+    end
+
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(0, testbench); 
+    end
+
+    initial begin
+        $monitor("in=%b, out=%b", in, out);
+    end
+endmodule
