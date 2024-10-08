@@ -1,0 +1,9 @@
+module half_sub(x,y,d,b);
+  input x,y;
+  output reg d,b;
+  always@(*)
+    begin
+      d=x^y;
+      b=(~x)&y;
+    end
+endmodule
