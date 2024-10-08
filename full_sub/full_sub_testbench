@@ -1,0 +1,34 @@
+module full_sub_tst;
+  
+  reg x,y,z;
+  wire d,bo;
+  
+  full_sub uut(
+    .x(x),
+    .y(y),
+    .z(z),
+    .d(d),
+    .bo(bo)
+  );
+  
+  initial begin 
+       {x,y,z}=3'b000;
+    #2 {x,y,z}=3'b001;
+    #2 {x,y,z}=3'b010;
+    #2 {x,y,z}=3'b011;
+    #2 {x,y,z}=3'b100;
+    #2 {x,y,z}=3'b101;
+    #2 {x,y,z}=3'b110;
+    #2 {x,y,z}=3'b111;
+  end
+  
+  initial $monitor("x=%b,y=%b,z=%b,d=%b,bo=%b",x,y,z,d,bo);
+  initial #20 $finish;
+  initial begin 
+    $dumpfile("dumpfile.vcd");
+    $dumpvars;
+  end
+endmodule
+
+ 
+    
