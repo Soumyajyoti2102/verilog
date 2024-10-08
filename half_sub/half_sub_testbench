@@ -1,0 +1,27 @@
+module half_sub_tst;
+  reg x,y;
+  wire d,b;
+  
+  half_sub uut(
+    .x(x),
+    .y(y),
+    .d(d),
+    .b(b)
+  );
+  
+  initial begin 
+    x=0;  y=0;
+
+    #2 x=1'b0; y=1'b1;
+    #2 x=1'b1; y=1'b0;
+    #2 x=1'b1; y=1'b1;
+    #10 $finish;
+  end
+  
+  initial $monitor ("time=%g,x=%b,y=%b,d=%b,b=%b",$time,x,y,d,b);
+  initial begin
+    $dumpfile("dumpfile.vcd");
+    $dumpvars;
+  end
+endmodule
+    
