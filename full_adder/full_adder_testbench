@@ -1,0 +1,31 @@
+module full_adder_tst;
+  reg a,b,cin;
+  wire s,cout;
+  
+  full_adder uut(
+    .a(a),
+    .b(b),
+    .cin(cin),
+    .s(s),
+    .cout(cout)
+  );
+  
+  
+  initial begin 
+        {a,b,cin} = 3'b000;
+    #2  {a,b,cin} = 3'b001;
+    #2  {a,b,cin} = 3'b010;
+    #2  {a,b,cin} = 3'b011;
+    #2  {a,b,cin} = 3'b100;
+    #2  {a,b,cin} = 3'b101;
+    #2  {a,b,cin} = 3'b110;
+    #2  {a,b,cin} = 3'b111;
+  end
+  
+  initial $monitor("a=%b,b=%b,cin=%b,s=%b,cout=%b",a,b,cin,s,cout);
+  initial #20 $finish;
+  initial begin
+    $dumpfile("dumpfile.vcd");
+    $dumpvars;
+  end
+endmodule
