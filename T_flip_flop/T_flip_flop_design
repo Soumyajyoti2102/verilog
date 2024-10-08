@@ -1,0 +1,14 @@
+module t_flip_flop (
+    input wire T,CLK,RESET,  
+    output reg Q       
+);
+always @(posedge CLK or posedge RESET) begin
+        if (RESET) begin
+            Q <= 1'b0; 
+        end
+        else if (T) begin
+            Q <= ~Q; 
+        end
+    end
+endmodule
+
