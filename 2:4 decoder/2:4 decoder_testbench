@@ -1,0 +1,27 @@
+module testbench;
+    reg [1:0] in;       
+    wire [3:0] out;     
+
+    decoder_2x4 dut (
+        .in(in),
+        .out(out)
+    );
+
+    initial begin
+        in = 2'b00;  #5;
+        in = 2'b01;  #5;
+        in = 2'b10;  #5;
+        in = 2'b11;  #5;
+        
+        $finish;  
+    end
+
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(0, testbench);  
+    end
+
+    initial begin
+        $monitor("in=%b, out=%b", in, out);
+    end
+endmodule
