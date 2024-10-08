@@ -1,0 +1,33 @@
+module testbench;
+    reg T;                
+    reg CLK;             
+    reg RESET;          
+    wire Q;              
+
+    t_flip_flop uut (
+        .T(T),
+        .CLK(CLK),
+        .RESET(RESET),
+        .Q(Q)
+    );
+
+    initial begin
+        CLK = 0; 
+        forever #5 CLK = ~CLK; 
+    end
+    initial begin
+            RESET = 1; T = 0;
+        #10 RESET = 0; T = 0;
+        #10 RESET = 0; T = 1;
+        #10 $finish; 
+    end
+  
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars;
+    end
+
+    initial begin
+        $monitor("RESET=%0d, T=%0d, CLK=%0d, Q=%0d", RESET, T, CLK, Q);
+    end
+endmodule
