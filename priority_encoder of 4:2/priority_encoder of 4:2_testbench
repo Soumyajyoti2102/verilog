@@ -1,0 +1,35 @@
+module testbench;
+    reg [3:0] in;       
+    wire [1:0] out;     
+    wire valid;         
+
+    priority_encoder_4x2 dut (
+        .in(in),
+        .out(out),
+        .valid(valid)
+    );
+
+    initial begin
+       
+        in = 4'b0000;  #5;  
+        in = 4'b0001;  #5;  
+        in = 4'b0010;  #5;  
+        in = 4'b0100;  #5;  
+        in = 4'b1000;  #5;
+        in = 4'b1100;  #5;  
+        in = 4'b1010;  #5;  
+        in = 4'b0111;  #5; 
+        in = 4'b1111;  #5;  
+        in = 4'b0000;  #5;  
+        $finish; 
+    end
+
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(0, testbench);  
+    end
+
+    initial begin
+        $monitor("in=%b, out=%b, valid=%b", in, out, valid);
+    end
+endmodule
