@@ -1,0 +1,10 @@
+module full_sub(x, y, z, d, bo);
+  input x, y, z;
+  output reg d, bo;
+
+  always @(*) begin
+    d = (x ^ y ^ z); // Difference
+    bo = ((~x & y) | ((~(x ^ y)) & z)); // Borrow out
+  end
+endmodule
+
