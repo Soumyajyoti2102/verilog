@@ -1,0 +1,42 @@
+module tb_comparator_1bit;
+
+    reg a;
+    reg b;
+
+    wire agb;
+    wire alb;
+    wire aeb;
+
+    comparator_1bit uut (
+      .a(a),
+      .b(b),
+      .agb(agb),
+      .alb(alb),
+      .aeb(aeb)
+    );
+
+    initial begin
+        a = 0;
+        b = 0;
+        #10; 
+
+        a = 0;
+        b = 1;
+        #10;
+
+        a = 1;
+        b = 0;
+        #10;
+
+        a = 1;
+        b = 1;
+        #10;
+
+        $finish;
+    end
+
+    initial begin
+      $monitor("At time %t: a = %b, b = %b, agb = %b, alb = %b, aeb = %b",
+                 $time, a, b, agb,alb,aeb);
+    end
+endmodule
