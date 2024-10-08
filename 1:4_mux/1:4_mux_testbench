@@ -1,0 +1,40 @@
+module testbench;
+    reg [1:0] sel; 
+    reg i0, i1, i2, i3; 
+    wire y; 
+
+   
+    mux_1x4 dut (
+        .sel(sel),
+        .i0(i0),
+        .i1(i1),
+        .i2(i2),
+        .i3(i3),
+        .y(y)
+    );
+
+    initial begin
+        i0 = 0; i1 = 1; i2 = 0; i3 = 1;
+
+        sel = 2'b00;  
+        #5;
+        sel = 2'b01;  
+        #5;
+        sel = 2'b10;  
+        #5;
+        sel = 2'b11;  
+        #5;
+        
+        $finish;     
+    end
+
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(0, testbench);   
+    end
+
+    initial begin
+        $monitor("sel=%b, i0=%b, i1=%b, i2=%b, i3=%b, y=%b", sel, i0, i1, i2, i3, y);
+    end
+endmodule
+
